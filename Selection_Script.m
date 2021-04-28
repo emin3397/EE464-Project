@@ -42,10 +42,10 @@ I_Diode=I_out_avg;
 N1_min=@(Ae)Lm*I_sw_max*1e6/(B_sat*Ae); %Function to calculate Primary turn input is area of core Ae in mm^2
 d_air_gap=@(Ae)u_0*N1_selected^2*Ae*1e-4/Lm; %required air gap in mm;
 
-Ae=pi*10.9^2;%mm^2
+Ae=234;%pi*7.68^2;%mm^2
 
 N1_selected=ceil(N1_min(Ae));
-N2_calc=N1_selected/n;
+N2_calc=round(N1_selected/n);
 d_air_gap_calc=d_air_gap(Ae);
 
 N1_wire_len=N1_selected*2*pi*sqrt(Ae/pi);
@@ -53,14 +53,14 @@ N2_wire_len=N1_selected/n*2*pi*sqrt(Ae/pi);
 N3_wire_len=N2_wire_len;
 
 wire_area_N1=N1_selected*I_sw_max/Current_Density; %mm^2
-wire_area_N2=N2_wire_len*I_out_avg/Current_Density;%mm^2
-wire_area_N3=N3_wire_len*100e-3/Current_Density;%mm^2
+wire_area_N2=N2_calc*I_out_avg/Current_Density;%mm^2
+wire_area_N3=N2_calc*100e-3/Current_Density;%mm^2
 
 Total_wire_area=wire_area_N1+wire_area_N2+wire_area_N3;
 winding_window_area=Total_wire_area/Kcu; %mm^2
 winding_window_height=sqrt(Total_wire_area);
 
-Transformer_Volume=winding_window_height*winding_window_area*5; %mm^3;
+Transformer_Volume=winding_window_height*winding_window_area*6; %mm^3;
 
 %AWG Area in mm^2 List 1-20
 AWG_Area=[42.4 33.6 26.7 21.2 16.8 13.3 10.5 8.37 6.63 5.26 4.17 3.31 2.62 2.08 1.165 1.31 1.04 0.823 0.653 0.518 0.41 0.326 0.258 0.205 0.162 0.129 0.102 0.081 0.0642 0.0509 0.0404 0.032 0.0254 0.0201 0.016 0.0127 0.01 0.00797 0.00632 0.00501];
@@ -76,7 +76,7 @@ fprintf("Output Capacitance=%0.2fuF\n",C_out*1e6*K_margin);
 fprintf("Transformer N1 Turns=%d Cable=AWG%d Length=%0.2fm\n",N1_selected,N1_AWG,N1_wire_len*K_margin*1e-3);
 fprintf("Transformer N2 Turns=%d Cable=AWG%d Length=%0.2fm\n",N2_calc,N2_AWG,N2_wire_len*K_margin*1e-3);
 fprintf("Transformer N3 Turns=%d Cable=AWG%d Length=%0.2fm\n",N2_calc,N3_AWG,N3_wire_len*K_margin*1e-3);
-fprintf("Transformer Winding window area=%0.2fmm^2 Air gap=%0.2f, Ae=%0.2fmm^2 Estimated Volume=%0.2fmm^3\n",winding_window_area,d_air_gap_calc,Ae,Transformer_Volume);
+fprintf("Transformer Winding window area=%0.2fmm^2 Air gap=%0.2fmm, Ae=%0.2fmm^2 Estimated Volume=%0.2fmm^3\n",winding_window_area,d_air_gap_calc,Ae,Transformer_Volume);
 fprintf("Transformer Lm=%0.2fmH Fs=%dkHz\n",Lm*1e3,Fs);
 
 
