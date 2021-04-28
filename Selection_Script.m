@@ -62,7 +62,7 @@ winding_window_height=sqrt(Total_wire_area);
 
 Transformer_Volume=winding_window_height*winding_window_area*6; %mm^3;
 
-%AWG Area in mm^2 List 1-20
+%AWG Area in mm^2 List 1-40
 AWG_Area=[42.4 33.6 26.7 21.2 16.8 13.3 10.5 8.37 6.63 5.26 4.17 3.31 2.62 2.08 1.165 1.31 1.04 0.823 0.653 0.518 0.41 0.326 0.258 0.205 0.162 0.129 0.102 0.081 0.0642 0.0509 0.0404 0.032 0.0254 0.0201 0.016 0.0127 0.01 0.00797 0.00632 0.00501];
 [minValue,N1_AWG] =min(abs(AWG_Area-I_sw_max/Current_Density));
 [minValue2,N2_AWG] =min(abs(AWG_Area-I_out_avg/Current_Density));
