@@ -1,6 +1,5 @@
 %%Flyback Converter
-clc;
-close all;
+
 %Circuit Parameters
 Vin_min=220;
 Vin_max=400;
@@ -43,7 +42,7 @@ I_Diode=I_out_avg;
 
 %Transformer Design E-core with gap
 N1_min=@(Ae)Lm*I_sw_max*1e6/(B_sat*Ae); %Function to calculate Primary turn input is area of core Ae in mm^2
-d_air_gap=@(Ae)u_0*N1_selected^2*Ae*1e-3/Lm; %required air gap in mm;
+d_air_gap=@(Ae)u_0*N1_selected^2*Ae*1e-4/Lm; %required air gap in mm;
 
 Ae=84.3;%pi*7.68^2;%mm^2
 
@@ -71,14 +70,14 @@ AWG_Area=[42.4 33.6 26.7 21.2 16.8 13.3 10.5 8.37 6.63 5.26 4.17 3.31 2.62 2.08 
 [minValue2,N2_AWG] =min(abs(AWG_Area-I_out_avg/Current_Density));
 N3_AWG=length(AWG_Area);
 
-N1_skin_depth_area=pi*(((I_sw_max/Current_Density)/pi-Skin_depth^2)/(2*Skin_depth))^2;
-if(N1_skin_depth_area>(I_sw_max/Current_Density))
-    [minValue2,N1_AWG] =min(abs(AWG_Area-N1_skin_depth_area));
+if(sqrt(AWG_Area(N1_AWG)/pi)>Skin_depth)
+    N1_new_area=pi*(((I_sw_max/Current_Density)/pi-Skin_depth^2)/(2*Skin_depth))^2;
+    [minValue2,N1_AWG] =min(abs(AWG_Area-N2_new_area));
 end
 
-N2_skin_depth_area=pi*(((I_out_avg/Current_Density)/pi-Skin_depth^2)/(2*Skin_depth))^2;
-if(N2_skin_depth_area>(I_out_avg/Current_Density))
-    [minValue2,N2_AWG] =min(abs(AWG_Area-N2_skin_depth_area));
+if(sqrt(AWG_Area(N2_AWG)/pi)>Skin_depth)
+    N2_new_area=pi*(((I_out_avg/Current_Density)/pi-Skin_depth^2)/(2*Skin_depth))^2;
+    [minValue2,N2_AWG] =min(abs(AWG_Area-N2_new_area));
 end
 
 % Result Section
@@ -91,7 +90,7 @@ fprintf("Transformer N1 Turns=%d Cable=AWG%d Length=%0.2fm\n",N1_selected,N1_AWG
 fprintf("Transformer N2 Turns=%d Cable=AWG%d Length=%0.2fm\n",N2_calc,N2_AWG,N2_wire_len*K_margin*1e-3);
 fprintf("Transformer N3 Turns=%d Cable=AWG%d Length=%0.2fm\n",N2_calc,N3_AWG,N3_wire_len*K_margin*1e-3);
 fprintf("Transformer Winding window area=%0.2fmm^2 Air gap=%0.2fmm, Ae=%0.2fmm^2 Estimated Volume=%0.2fmm^3\n",winding_window_area,d_air_gap_calc,Ae,Transformer_Volume);
-fprintf("Transformer Lm=%0.2fmH Fs=%dkHz\n",Lm*1e3,Fs*1e-3);
+fprintf("Transformer Lm=%0.2fmH Fs=%dkHz\n",Lm*1e3,Fs);
 
 
 

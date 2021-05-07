@@ -483,7 +483,7 @@ L Device:R_Small R1
 U 1 1 6093F09B
 P 1350 3850
 F 0 "R1" V 1154 3850 50  0000 C CNN
-F 1 "18.9k" V 1245 3850 50  0000 C CNN
+F 1 "15k" V 1245 3850 50  0000 C CNN
 F 2 "Resistor_SMD:R_0805_2012Metric" H 1350 3850 50  0001 C CNN
 F 3 "~" H 1350 3850 50  0001 C CNN
 	1    1350 3850
@@ -592,12 +592,12 @@ $EndComp
 $Comp
 L Connector:Screw_Terminal_01x02 Vout1
 U 1 1 609877F0
-P 10550 2200
-F 0 "Vout1" H 10630 2192 50  0000 L CNN
-F 1 "Screw_Terminal_01x02" H 10630 2101 50  0000 L CNN
-F 2 "TerminalBlock:TerminalBlock_Altech_AK300-2_P5.00mm" H 10550 2200 50  0001 C CNN
-F 3 "~" H 10550 2200 50  0001 C CNN
-	1    10550 2200
+P 10350 2200
+F 0 "Vout1" H 10430 2192 50  0000 L CNN
+F 1 "Screw_Terminal_01x02" H 10050 1900 50  0000 L CNN
+F 2 "TerminalBlock:TerminalBlock_Altech_AK300-2_P5.00mm" H 10350 2200 50  0001 C CNN
+F 3 "~" H 10350 2200 50  0001 C CNN
+	1    10350 2200
 	1    0    0    1   
 $EndComp
 Wire Wire Line
@@ -796,11 +796,9 @@ $EndComp
 Wire Wire Line
 	7650 2050 7750 2050
 Wire Wire Line
-	10350 2050 10350 2100
+	10150 2050 10150 2100
 Wire Wire Line
-	10350 2200 10350 2450
-Wire Wire Line
-	10350 2450 9850 2450
+	10150 2200 10150 2450
 Wire Wire Line
 	7750 2450 7750 2350
 Connection ~ 7750 2350
@@ -841,9 +839,6 @@ Wire Wire Line
 	9500 2450 9200 2450
 Wire Wire Line
 	9850 2400 9850 2450
-Connection ~ 9850 2450
-Wire Wire Line
-	9850 2450 9500 2450
 Wire Wire Line
 	8150 2050 8150 1750
 Wire Wire Line
@@ -894,12 +889,27 @@ Wire Wire Line
 	9200 2050 9500 2050
 Connection ~ 9500 2050
 Wire Wire Line
-	9500 2050 9850 2050
-Wire Wire Line
 	9850 2200 9850 2050
-Connection ~ 9850 2050
-Wire Wire Line
-	9850 2050 10350 2050
 Wire Wire Line
 	7150 2350 7750 2350
+Wire Wire Line
+	9500 2050 9850 2050
+Wire Wire Line
+	9500 2450 9850 2450
+Wire Wire Line
+	9850 2450 10150 2450
+Connection ~ 9850 2450
+Wire Wire Line
+	10150 2050 9850 2050
+Connection ~ 9850 2050
+Wire Notes Line
+	4500 600  1900 600 
+Wire Notes Line
+	1900 600  1900 2000
+Wire Notes Line
+	1900 2000 4500 2000
+Wire Notes Line
+	4500 600  4500 2000
+Text Notes 2200 900  0    50   ~ 0
+Voltage Protection
 $EndSCHEMATC

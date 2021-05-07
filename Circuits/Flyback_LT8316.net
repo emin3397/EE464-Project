@@ -1,0 +1,40 @@
+* C:\Users\karab\OneDrive\Documents\GitHub\EE464-Project\Circuits\Flyback_LT8316.asc
+Vin IN 0 400
+L1 IN D 380µ Rser=0.5
+L2 0 N001 2.63µ Rser=0.03 Cpar=0.5p
+Rsense S 0 20m
+Rload OUT 0 14.4
+C3 N008 N003 47p Rser=10K
+R4 N009 N010 108K
+R5 N003 N009 18.7k
+R6 N009 0 2.2k
+D4 D N005 RFN1L7S
+L3 0 N003 2.63µ Rser=0.6
+C5 N007 0 1µ
+C7 IN D 1n Rser=25
+C8 OUT 0 200µ Rser=2m
+C9 N011 0 100n Rser=20K
+R9 N012 0 61.9K
+M1 D G S S IPU80R2K8CEBKMA1
+C1 N002 0 100nf
+XU1 IN MP_01 MP_02 MP_03 MP_04 MP_05 MP_06 N007 N002 N008 N010 N009 N011 N012 0 0 N007 S G LT8316
+D2 N003 N002 RB058L150
+D5 IN N005 1N5378B N=2
+D3 N001 OUT STD12100TR
+Rload1 OUT N004 1.55
+Vin1 N006 0 PULSE(0 12 25m 1p 1p 5m 10m)
+M2 N004 N006 0 0 BSB012N03LX3
+.model D D
+.lib C:\Users\karab\OneDrive\Documents\LTspiceXVII\lib\cmp\standard.dio
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\karab\OneDrive\Documents\LTspiceXVII\lib\cmp\standard.mos
+K1 L1 L2 L3 0.993
+* 12:1:1
+.tran 20m 40m 0 20u startup uic
+.model STD12100TR D(Vrev=100 Vf=0.75)
+.model IPU80R2K8CEBKMA1 VDMOS(Rg=1.2 Cjo=.29n Vds=800 Ron=2.8 Qg=12n)
+.model SW SW()
+.lib LT8316.sub
+.backanno
+.end
