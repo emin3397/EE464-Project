@@ -1,4 +1,4 @@
-19029289356905384
+19080928548729994
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -47515,13 +47515,6 @@ https://power.murata.com/data/power/oki-78sr.pdf
 0
 3
 3
-Converter_DCDC
-LT8316IFEPBF
-LT8316IFE#PBF-3
-Integrated Circuit
-0
-17
-17
 Crystal
 Crystal_AT310_D3.0mm_L10.0mm_Horizontal
 Crystal THT AT310 10.0mm-10.5mm length 3.0mm diameter http://www.cinetech.com.tw/upload/2011/04/20110401165201.pdf
@@ -81906,13 +81899,6 @@ ignition coil autotransformer
 0
 3
 3
-Transformer_THT
-EE464_Transformer
-
-
-0
-6
-6
 Transformer_THT
 Transformer_37x44
 transformer 37x44mm²
